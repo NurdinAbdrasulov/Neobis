@@ -19,9 +19,9 @@ public class ColumnInArray{
 	                 
 
 	if(operation == 'S')
-	    System.out.println(String.format("%.1f", result)); 	    
-         else if(operation == 'M')
-	    System.out.println(String.format("%.1f", result / 12));       
+	    System.out.printf("%.1f\n", result);
+        else if(operation == 'M')
+	    System.out.printf("%.1f\n", result / 12); 
 
     }         
 }
