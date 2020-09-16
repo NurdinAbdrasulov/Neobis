@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class BanknotesandCoins {
-    private static long notes;
+    private static int notes;
     private static int coins;
 
     public static void main(String[] args) {
@@ -9,16 +9,16 @@ public class BanknotesandCoins {
 
         double input = scanner.nextDouble();
 
-        notes = (long) input;
+        notes = (int) input;
         coins = (int) (input * 100 % 100);
 
-        long hundred = calculateNotes(100);
-        long fifty = calculateNotes(50);
-        long twenty = calculateNotes(20);
-        long ten = calculateNotes(10);
-        long five = calculateNotes(5);
-        long two = calculateNotes(2);
-        long one = calculateNotes(1);
+        int hundred = calculateNotes(100);
+        int fifty = calculateNotes(50);
+        int twenty = calculateNotes(20);
+        int ten = calculateNotes(10);
+        int five = calculateNotes(5);
+        int two = calculateNotes(2);
+        int one = calculateNotes(1);
 
         int fiftyCent = calculateCoins(50);
         int twentyFiveCent = calculateCoins(25);
@@ -42,8 +42,8 @@ public class BanknotesandCoins {
                 oneCent + " moeda(s) de R$ 0.01");
     }
 
-    private static long calculateNotes(int banknote){
-        long count = 0;
+    private static int calculateNotes(int banknote){
+        int count = 0;
         if(notes >= banknote) {
             count = notes / banknote;
             notes %= banknote;
