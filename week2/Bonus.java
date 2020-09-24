@@ -24,124 +24,96 @@ public class Bonus {
             case 0:
                 loop: for (int i = 0; i < array.length; i++)
                     for (int j = 0; j < array[i].length - 1; j++) {
-                        if (array[i][j] == 0)
-                            continue;
                         int nextJ = j + 1;
-                        while (array[i][nextJ] == 0) {
-                            nextJ++;
-                            if (nextJ > array[i].length - 1)
-                                continue loop;
-                        }
+                        if(!moveToLeft(array, i, j) || !moveToLeft(array, i, nextJ))
+                            continue loop;
+
                         if (array[i][j] == array[i][nextJ]) {
                             array[i][j] += array[i][nextJ];
                             array[i][nextJ] = 0;
                         }
                     }
-
-                loop2:   for(int i = 0; i < array.length; i++)
-                    for(int j = 0; j < array[i].length -1; j++)
-                        if(array[i][j] == 0){
-                            int nextJ = j + 1;
-                            while(array[i][nextJ] == 0) {
-                                nextJ++;
-                                if(nextJ > array[i].length -1)
-                                    continue loop2;
-                            }
-                            array[i][j] = array[i][nextJ];
-                            array[i][nextJ] = 0;
-                        }
                 break;
             case 1:
                 loop: for(int j = 0; j < array.length; j++)
                     for(int i = 0; i < array.length - 1 ; i++){
-                        if(array[i][j] == 0)
-                            continue;
                         int nextI = i+1;
-                        while(array[nextI][j] == 0){
-                            nextI++;
-                            if(nextI > array[i].length - 1)
-                                continue loop;
-                        }
+                        if(!moveToUp(array, i, j) || !moveToUp(array, nextI, j))
+                            continue loop;
+
                         if(array[i][j] == array[nextI][j]){
                             array[i][j] += array[nextI][j];
-                            array[nextI][j] = 0; //continue is that ++j
-                        }
-                    }
-
-                loop2:   for(int j = 0; j < array.length; j++)
-                    for(int i = 0; i < array[i].length -1; i++)
-                        if(array[i][j] == 0){
-                            int nextI = i + 1;
-                            while(array[nextI][j] == 0) {
-                                nextI++;
-                                if(nextI > array[i].length -1)
-                                    continue loop2;
-                            }
-                            array[i][j] = array[nextI][j];
                             array[nextI][j] = 0;
                         }
+                    }
                 break;
             case 2:
                 loop: for (int i = array.length - 1; i >= 0; i--)
                     for (int j = array.length - 1; j > 0; j--) {
-                        if (array[i][j] == 0)
-                            continue;
                         int nextJ = j - 1;
-                        while (array[i][nextJ] == 0) {
-                            nextJ--;
-                            if (nextJ < 0 )
-                                continue loop;
-                        }
+                        if (!moveToRight(array, i, j) || !moveToRight(array, i, nextJ))
+                            continue;
+
                         if (array[i][j] == array[i][nextJ]) {
                             array[i][j] += array[i][nextJ];
                             array[i][nextJ] = 0;
                         }
                     }
-
-                loop2: for(int i = array.length -1; i >=0 ; i--)
-                    for(int j = array.length - 1; j > 0 ; j--)
-                        if(array[i][j] == 0){
-                            int nextJ = j - 1;
-                            while(array[i][nextJ] == 0) {
-                                nextJ--;
-                                if(nextJ < 0)
-                                    continue loop2;
-                            }
-                            array[i][j] = array[i][nextJ];
-                            array[i][nextJ] = 0;
-                        }
                 break;
             case 3:
                 loop: for(int j = array.length -1; j >= 0; j--)
                     for(int i = array.length - 1; i > 0  ; i--){
-                        if(array[i][j] == 0)
-                            continue;
                         int nextI = i-1;
-                        while(array[nextI][j] == 0){
-                            nextI--;
-                            if(nextI < 0)
-                                continue loop;
-                        }
+                        if (!moveToDown(array, i, j) || !moveToDown(array, nextI, j))
+                            continue;
+
                         if(array[i][j] == array[nextI][j]){
                             array[i][j] += array[nextI][j];
-                            array[nextI][j] = 0; //continue is that ++j
-                        }
-                    }
-
-                loop2: for(int j = array.length -1; j >=0 ; j--)
-                    for(int i = array.length - 1; i > 0 ; i--)
-                        if(array[i][j] == 0){
-                            int nextI = i - 1;
-                            while(array[nextI][j] == 0) {
-                                nextI--;
-                                if(nextI < 0)
-                                    continue loop2;
-                            }
-                            array[i][j] = array[nextI][j];
                             array[nextI][j] = 0;
                         }
+                    }
                 break;
         }
+    }
+
+    private static boolean moveToLeft(int[][] array, int i, int j){
+        int count = 0;
+        while (array[i][j] == 0 && count++ < array[i].length){
+            for(int a = j; a < array[i].length - 1; a++)
+                array[i][a] = array[i][a + 1];
+            array[i][array[i].length - 1] = 0;
+        }
+        return array[i][j] != 0;
+    }
+
+    private static boolean moveToUp(int[][] array, int i, int j){
+        int count = 0;
+        while (array[i][j] == 0 && count++ < array.length){
+            for(int a = i; a < array.length - 1; a++)
+                array[a][j] = array[a + 1][j];
+            array[array.length - 1][j] = 0;
+        }
+        return array[i][j] != 0;
+    }
+
+    private static boolean moveToRight(int[][] array, int i, int j){
+        int count = array[i].length;
+        while (array[i][j] == 0 && count-- > 0){
+            for(int a = j; a > 0; a--)
+                array[i][a] = array[i][a - 1];
+            array[i][0] = 0;
+        }
+        return array[i][j] != 0;
+    }
+
+    private static boolean moveToDown(int[][] array, int i, int j){
+        int count = array.length;
+        while (array[i][j] == 0 && count-- > 0){
+            for(int a = i; a > 0; a--)
+                array[a][j] = array[a-1][j];
+            array[0][j] = 0;
+        }
+        return array[i][j] != 0;
     }
 
 }
