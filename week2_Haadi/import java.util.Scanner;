@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Flavious {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        for(int i = 0; i < n; i++){
+            int x = scan.nextInt();
+            int y = scan.nextInt();
+            System.out.printf("Case %d: %d\n",i + 1, last(x, y) + 1);
+        }
+    }
+    private static int last(int n, int k) {
+        int r = 0;
+        for (int i = 2; i <= n; i++) {
+            r = (r + k) % i;
+        }
+        return r;
+    }
+}
