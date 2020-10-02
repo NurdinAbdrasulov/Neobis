@@ -1,0 +1,5 @@
+select candidate.name,
+cast( (((score.math * 2) + (score.specific * 3) + (score.project_plan * 5)) / 10.0) as decimal(10,2)) as Avg from
+candidate join score on
+candidate.id = score.candidate_id
+order by  Avg desc;
