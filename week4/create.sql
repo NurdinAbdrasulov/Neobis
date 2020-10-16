@@ -45,7 +45,8 @@ VALUES(1, "bmw", "x6", "crossover", "2020-01-01", "white", 91000.1),
 (2, "lexus", "LX570", "SUV", "2020-01-02", "white", 92000.2),
 (3, "mercedes", "GLS 450", "SUV", "2020-01-03", "white", 93000.3),
 (4, "toyota", "land cruiser 200", "SUV", "2020-01-04", "white", 94000.4),
-(5, "subaru", "brz", "coupe", "2020-01-05", "white", 95000.5);
+(5, "subaru", "brz", "coupe", "2020-01-05", "white", 95000.5),
+(10, "toyota", "land cruiser 200", "SUV", "2000-10-10", "white", 94.4);
 
 INSERT INTO clients
 VALUES(1, "ФИО1", "male", "0777111111", "2000-01-01", "2020-09-01", "Chuy 1"),

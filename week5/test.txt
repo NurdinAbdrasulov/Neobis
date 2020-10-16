@@ -6,10 +6,9 @@
 
 Методы:
   /***
-     * Подключается к базе данных и
-     * инициирует статическую переменную класса "connection"
+     * Подключается к базе данных 
      */
-    private static void connectToDB()
+    private static void getConnection()
 
 
 
