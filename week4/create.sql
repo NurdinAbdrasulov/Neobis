@@ -2,7 +2,7 @@ CREATE DATABASE week4;
 USE week4;
 
 CREATE TABLE cars(
-id int,
+id int ,
 brand varchar(21) not null,
 model varchar(21) not null,
 body_style varchar(21),
@@ -25,15 +25,18 @@ _status varchar(21),
 car_id int,
 client_id int);
 
-ALTER TABLE cars
-ADD CONSTRAINT pk_id primary key(id);
 
-ALTER TABLE clients
-ADD CONSTRAINT pk_id primary key(id);
+ALTER TABLE cars 
+MODIFY COLUMN id INT auto_increment primary key;
+
+ALTER TABLE clients 
+MODIFY COLUMN id INT auto_increment primary key;
+
+ALTER TABLE sales 
+MODIFY COLUMN id INT auto_increment primary key;
 
 ALTER TABLE sales
-ADD (CONSTRAINT pk_id primary key(id),
- CONSTRAINT fk_car_id foreign key(car_id) references cars(id),
+ADD ( CONSTRAINT fk_car_id foreign key(car_id) references cars(id),
  CONSTRAINT fk_client_id foreign key(client_id) references clients(id));
 
 
@@ -56,3 +59,4 @@ VALUES(1, "success", 1, 1),
 (3, "success", 3, 2),
 (4, "success", 4, 3),
 (5, "in process", 5, 4);
+

@@ -1,1 +1,47 @@
-descriptions of the methods will be soon
+программа подключается к базе
+выводит все содержимое таблицы 'cars' на консоль 
+добавляет новую запись в таб 'cars'
+удаляет запись с id 1 из таб 'cars' 
+изменяет содержимое записи с id 5 тоже из таб 'cars'
+
+Методы:
+  /***
+     * Подключается к базе данных и
+     * инициирует статическую переменную класса "connection"
+     */
+    private static void connectToDB()
+
+
+
+    /***
+     * находит запись в таблице "cars" по id, и изменяет содержимое столбца brand на заданную строку
+     * @param brand - новое значение для столбца brand
+     * @param id - id записи.
+     */
+    private static void updateCarsBrand(String brand, long id)
+
+
+
+    /***
+     * Удаляет запись из таблицы "cars" по id
+     * @param id - id запися, которую требуется удалить
+     */
+    private static void deleteCarById(long id)
+
+
+
+ /***
+     * Данный метод додавляет новую запись в таблицу "cars"
+     *
+     * все параметры представляют собой столбцы таблицы
+     * не принимает id т.к. база сгенерирует (auto increment)
+     */
+    private static void addNewCar(String brand, String model, String bodyStyle, String yearOfManufacture, String color, double price) 
+
+
+/***
+     *для получения содержимое таблицы
+     * @param tableName - имя таблицы
+     * @return объект ResultSet, в котором полное содержимое таблицы
+     */
+    private static ResultSet selectAllFrom(String tableName) 

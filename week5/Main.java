@@ -41,6 +41,10 @@ public class Main {
 
     }
 
+    /***
+     * Подключается к базе данных и
+     * инициирует статическую переменную класса "connection"
+     */
     private static void connectToDB(){
         final String databaseURL = "jdbc:mysql://localhost:3306/week4";
         final String userName = "root";
@@ -56,6 +60,11 @@ public class Main {
         }
     }
 
+    /***
+     * находит запись в таблице "cars" по id, и изменяет содержимое столбца brand на заданную строку
+     * @param brand - новое значение для столбца brand
+     * @param id - id записи.
+     */
     private static void updateCarsBrand(String brand, long id){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE cars SET brand = ? WHERE id = ?");
@@ -71,6 +80,10 @@ public class Main {
         }
     }
 
+    /***
+     * Удаляет запись из таблицы "cars" по id
+     * @param id - id записи, которую требуется удалить
+     */
     private static void deleteCarById(long id){
         PreparedStatement preparedStatement = null;
         try {
@@ -87,6 +100,12 @@ public class Main {
 
     }
 
+    /***
+     * Данный метод додавляет новую запись в таблицу "cars"
+     *
+     * все параметры представляют собой столбцы таблицы
+     * не принимает id т.к. база сгенерирует (auto increment)
+     */
     private static void addNewCar(String brand, String model, String bodyStyle, String yearOfManufacture, String color, double price) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into cars (brand, model, body_style, year_of_manufacture, color, price) values(?, ?, ?, ?, ?, ?)");
@@ -106,6 +125,11 @@ public class Main {
 
     }
 
+    /***
+     *
+     * @param tableName - имя таблицы
+     * @return объект ResultSet, в котором полное содержимое таблицы
+     */
     private static ResultSet selectAllFrom(String tableName) {
         ResultSet resultSet = null;
         String query = "select * from " + tableName;
