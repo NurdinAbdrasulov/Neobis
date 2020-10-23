@@ -1,1 +1,33 @@
-will be soon
+    /***
+     * Simple get request that
+     * @return all existing cars
+     */
+    @GetMapping("/getAllCars")
+    public @ResponseBody Iterable<Cars> getAllCpu() 
+
+    /**
+     * add new a record to the database
+     * @param carModel - new record
+     * @return message
+     */
+    @PostMapping("/addCar")
+    public String  addCar(@ModelAttribute CarModel carModel)
+
+
+    /***
+     * find record by id and set new values
+     * @param id - id of existing record, that should be modified
+     * @param carModel - new values for record
+     * @return message
+     */
+    @PutMapping("/update/{id}")
+    public String updateCar(@PathVariable("id") int id, @ModelAttribute CarModel carModel)
+
+
+/***
+     * find record by id and delete it
+     * @param id - if of record that should be deleted
+     * @return message
+     */
+    @DeleteMapping("/delete/{id}")
+    public String removeCar(@PathVariable("id") int id)
