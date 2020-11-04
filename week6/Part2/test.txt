@@ -4,7 +4,11 @@
      */
     @GetMapping("/getAllCars")
     public @ResponseBody Iterable<Cars> getAllCpu() 
+Path: GET   localhost:8080/cars/getAllCars
+Parameters: none
+Response: all cars(200 OK)
 
+____________________________________________________________________
     /**
      * add new a record to the database
      * @param carModel - new record
@@ -12,8 +16,19 @@
      */
     @PostMapping("/addCar")
     public String  addCar(@ModelAttribute CarModel carModel)
+Path: POST   localhost:8080/cars/addCar
+Parameters:
+brand:NewBrand
+model:PPmodel
+bodyStyle:PPstyle
+yearOfManufacture:2020-10-23
+color:yellow
+price:8520
+id:30
 
+Response:result: New car was successfully added (200 OK)
 
+____________________________________________________________________
     /***
      * find record by id and set new values
      * @param id - id of existing record, that should be modified
@@ -22,12 +37,26 @@
      */
     @PutMapping("/update/{id}")
     public String updateCar(@PathVariable("id") int id, @ModelAttribute CarModel carModel)
+Path: PUT localhost:8080/cars/update/10
+Parameters:
+brand:adsfasdf
+model:asdfsdafasdf
+bodyStyle:sdfsdaf
+yearOfManufacture  :2020-10-10
+color:sdfsdas
+price:12345
+id:10
+Response:result: car was successfully updated (200 OK)
 
 
+____________________________________________________________________
 /***
      * find record by id and delete it
-     * @param id - if of record that should be deleted
+     * @param id - id of record that should be deleted
      * @return message
      */
     @DeleteMapping("/delete/{id}")
     public String removeCar(@PathVariable("id") int id)
+Path: DELETE   localhost:8080/cars/delete/10
+Parameters: none
+Response: result: car was successfully removed
