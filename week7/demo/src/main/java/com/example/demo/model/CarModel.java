@@ -1,32 +1,33 @@
 package com.example.demo.model;
 
+import com.example.demo.entity.CarBrands;
+import com.example.demo.entity.CarModels;
+import com.example.demo.entity.Manufacturers;
+import com.example.demo.enums.BodyStyle;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarModel {
     private int id;
-    private String brand;
-    private String model;
-    private String bodyStyle;
+    private CarBrands brand;
+    private CarModels model;
+    private BodyStyle bodyStyle;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date yearOfManufacture;
 
     private String color;
+    private Manufacturers manufacturer;
     private double price;
 
-    public CarModel(int id, String brand, String model, String bodyStyle, Date yearOfManufacture, String color, double price) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.bodyStyle = bodyStyle;
-        this.yearOfManufacture = yearOfManufacture;
-        this.color = color;
-        this.price = price;
-    }
+
 
 }
