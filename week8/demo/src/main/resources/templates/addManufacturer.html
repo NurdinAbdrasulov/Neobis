@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <title>Добавление машины</title>
+
+</head>
+<body>
+<div class="row justify-content-lg-start">
+    <div class="col-md-10 col-lg-11 col-sm-6">
+        <div class="card">
+            <header class="card-header">
+                <h4 class="card-title mt-2">Добавление производителя</h4>
+            </header>
+            <article class="card-body">
+                <form  th:action="@{/manufacturer/addManufacturer}" th:object="${manufacturerModel}" method="post">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-lg-10">
+
+                            <div class="form-group col-md-12">
+                                <label for="brand">Марка</label>
+                                <select th:field="*{brand}" id="brand" class="form-control inputs">
+                                    <option th:each="brand : ${brands}"
+                                            th:value="${brand.getId()}"
+                                            th:utext="${brand.getBrand()}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="form-group col-md-6">
+                                    <label for="country">Страна</label>
+                                    <input th:field="*{country}" type="text" class="form-control inputs" id="country">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="address">Адресс</label>
+                                    <input th:field="*{address}" type="text" class="form-control inputs" id="address">
+                                </div>
+                            </div>
+
+                            <label for="tags">Номер телефона</label>
+                            <input th:field="*{phoneNumber}" type="number" class="form-control inputs" id="tags">
+
+
+
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-primary"> Добавить
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </article>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

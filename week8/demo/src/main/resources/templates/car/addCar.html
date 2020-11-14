@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <title>Добавление машины</title>
+
+</head>
+<body>
+<div class="row justify-content-lg-start">
+    <div class="col-md-10 col-lg-11 col-sm-6">
+        <div class="card">
+            <header class="card-header">
+                <h4 class="card-title mt-2">Добавление машины</h4>
+            </header>
+            <article class="card-body">
+                <form  th:action="@{/cars/addCar}" th:object="${carModel}" method="post">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-lg-10">
+
+                            <!--<label for="brand">Марка</label>
+                            <input th:field="*{brand}" type="text" class="form-control inputs" id="brand" >-->
+
+                            <div class="form-group col-md-12">
+                                <label for="brand">Марка</label>
+                                <select th:field="*{brand}" id="brand" class="form-control inputs">
+                                    <option th:each="brand : ${brands}"
+                                            th:value="${brand.getId()}"
+                                            th:utext="${brand.getBrand()}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="form-group col-md-6">
+                                    <label for="model">Модель</label>
+                                    <select th:field="*{model}" id="model" class="form-control inputs">
+                                        <option th:each="model : ${carModels}"
+                                                th:value="${model.getId()}"
+                                                th:utext="${model.getModel()}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="bodyStyle">Тип кузова</label>
+                                    <select th:field="*{bodyStyle}" name="projectType" id="bodyStyle" class="form-control inputs">
+                                        <option th:each="bodyStyle : ${bodyStyles}"
+                                                th:value="${bodyStyle}" th:text="${bodyStyle}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label for="tags">Дата выпуска</label>
+                            <input th:field="*{yearOfManufacture}" type="date" class="form-control inputs" id="tags">
+
+                            <div class="form-row mt-3">
+                                <div class="form-group col-md-6">
+                                    <label for="color">Цвет</label>
+                                    <input th:field="*{color}" type="text" class="form-control inputs" id="color">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="manufacture">Производитель</label>
+                                    <select th:field="*{manufacturer}" name="projectType" id="manufacture" class="form-control inputs">
+                                        <option th:each="manufacturer : ${manufactures}"
+                                                th:value="${manufacturer.getId()}" th:text="${manufacturer.getCountry()}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="form-group col-md-6">
+                                    <label for="price">Цена</label>
+                                    <input th:field="*{price}" type="number" class="form-control inputs" id="price">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="text-center mt-5">
+<!--                                <button type="submit" class="btn btn-primary mr-5" name="action" value="send"-->
+<!--                                        onclick="doValidation()"> Отправить на-->
+<!--                                    модерацию-->
+<!--                                </button> &lt;!&ndash;return dataValidation()&ndash;&gt;-->
+
+                                <button type="submit" class="btn btn-primary"> Добавить
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </article>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
