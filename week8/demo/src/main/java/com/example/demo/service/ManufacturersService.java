@@ -9,28 +9,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ManufacturersService {
     
     @Autowired
     private ManufacturesRepository manufacturesRepository;
-
-    @Autowired
-    private CarBrandsService carBrandsService;
     
     public Iterable<Manufacturers> getAllManufactures(){
        return manufacturesRepository.findAll();
     }
 
-    public List<CarBrands> getCarBrands() {
-        Iterable<CarBrands> allCarBrands = carBrandsService.getAllCarBrands();
-        List<CarBrands> list = new ArrayList<>();
-        for(CarBrands carBrand: allCarBrands)
-            list.add(carBrand);
-
-        return list;
-    }
 
     public void addManufacturer(ManufacturerModel manufacturerModel) {
         Manufacturers manufacturer = new Manufacturers();
@@ -40,5 +30,24 @@ public class ManufacturersService {
         manufacturer.setPhoneNumber(manufacturerModel.getPhoneNumber());
 
         manufacturesRepository.save(manufacturer);
+    }
+
+    public Optional<Manufacturers> getManufactureById(int id) {
+        return manufacturesRepository.findById(id);
+    }
+
+    public void update(int id, ManufacturerModel manufacturerModel) {
+        Optional<Manufacturers> optinal = manufacturesRepository.findById(id);
+        if(optinal.isPresent()){
+            Manufacturers manufacturer = optinal.get();
+            manufacturer.setBrand(manufacturerModel.getBrand());
+            manufacturer.setCountry(manufacturerModel.getCountry());
+            manufacturer.setAddress(manufacturerModel.getPhoneNumber());
+            manufacturesRepository.save(manufacturer);
+        }//throw exception if not found
+    }
+
+    public void delete(int id) {
+        manufacturesRepository.deleteById(id);
     }
 }

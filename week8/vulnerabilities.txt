@@ -1,0 +1,2 @@
+application.properties password
+employee entitiy keep password without encoding

@@ -24,19 +24,49 @@ public class EmployeesService {
         return res;
     }
 
-    public void addNewEmployee(EmployeeModel employeeModel){
-        Employees employee = new Employees();
-        employee.setFio(employeeModel.getFio());
-        employee.setPosition(employeeModel.getPosition());
-        employee.setGender(employeeModel.getGender());
-        employee.setAddress(employeeModel.getAddress());
-        employee.setPhoneNumber(employeeModel.getPhoneNumber());
-        employee.setLogin(employeeModel.getLogin());
-        employee.setPassword(employeeModel.getPassword());
-        employeesRepository.save(employee);
+    public String addNewEmployee(EmployeeModel employeeModel){
+        String result = "result: failed";
+        if(employeeModel.getLogin() != null && employeeModel.getPassword() != null) {
+            Employees employee = new Employees();
+            employee.setFio(employeeModel.getFio());
+            employee.setPosition(employeeModel.getPosition());
+            employee.setGender(employeeModel.getGender());
+            employee.setAddress(employeeModel.getAddress());
+            employee.setPhoneNumber(employeeModel.getPhoneNumber());
+            employee.setLogin(employeeModel.getLogin());
+            employee.setPassword(employeeModel.getPassword());
+            employeesRepository.save(employee);
+            result = "result: success";
+        }
+        return result;
     }
 
     public Employees getEmployeeByLogin(String login) {
         return employeesRepository.findByLoginIgnoreCase(login);
+    }
+
+    public String update(int id, EmployeeModel model) {
+        String result = "result: failed";
+
+        Optional<Employees> optional = employeesRepository.findById(id);
+        if(optional.isPresent() && model.getLogin() != null && model.getLogin() != null) {
+            Employees employee = optional.get();
+            employee.setFio(model.getFio());
+            employee.setAddress(model.getAddress());
+            employee.setGender(model.getGender());
+            employee.setPhoneNumber(model.getPhoneNumber());
+            employee.setPosition(model.getPosition());
+            employee.setLogin(model.getLogin());
+            employee.setPassword(model.getPassword());
+
+            employeesRepository.save(employee);
+            result = "result: success";
+        }
+
+        return result;
+    }
+
+    public void delete(int id) {
+        employeesRepository.deleteById(id);
     }
 }
