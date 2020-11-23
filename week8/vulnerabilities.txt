@@ -1,2 +1,2 @@
-application.properties password
-employee entitiy keep password without encoding
+application.properties contains database password
+passwords are stored without encoding on the employees talbe
