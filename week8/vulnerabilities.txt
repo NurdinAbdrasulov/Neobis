@@ -1,2 +1,3 @@
 application.properties contains database password - delete
 passwords are stored without encoding on the employees talbe - add PasswordEncoder
+
