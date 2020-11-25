@@ -4,6 +4,7 @@ import com.example.demo.entity.Cars;
 import com.example.demo.model.CarModel;
 import com.example.demo.service.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/cars")
+@PreAuthorize("hasAuthority('car')")
 public class CarsController {
 
     @Autowired
@@ -21,12 +23,14 @@ public class CarsController {
      * @return all existing cars
      */
     @GetMapping("/getAll")
+    @PreAuthorize("hasAuthority('чтение')")
     public Iterable<Cars> getAllCpu() {
         Iterable<Cars> values =  carsService.getAllCars();
         return values;
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAuthority('чтение')")
     public Optional<Cars> getCar(@PathVariable int id){
         Optional<Cars> car = carsService.getCarById(id);
         return car;
@@ -38,6 +42,7 @@ public class CarsController {
      * @return message
      */
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('добавление')")
     public String  addCar(@ModelAttribute CarModel carModel){
         carsService.addNewCar(carModel);
         return "result: New car was successfully added";
@@ -50,6 +55,7 @@ public class CarsController {
      * @return message
      */
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('обновление')")
     public String updateCar(@PathVariable("id") int id, @ModelAttribute CarModel carModel){
         carsService.updateById(id, carModel);
         return "result: car was successfully updated";
@@ -62,6 +68,7 @@ public class CarsController {
      * @return message
      */
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('удаление')")
     public String removeCar(@PathVariable("id") int id){
         carsService.removeById(id);
         return "result: car was successfully removed";

@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import com.example.demo.enums.Gender;
 import com.example.demo.enums.Position;
+import com.example.demo.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +34,8 @@ public class Employees {
     private String phoneNumber;
     private String login;
     private String password;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

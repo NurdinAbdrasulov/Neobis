@@ -41,6 +41,10 @@ public class ClientsService {
 
     }
 
+    public Clients getClientByLogin(String login){
+        return clientsRepository.findByLoginIgnoreCase(login);
+    }
+
     public void deleteById(int id) {
         clientsRepository.deleteById(id);
     }

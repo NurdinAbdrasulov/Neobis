@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.enums.Gender;
+import com.example.demo.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +31,10 @@ public class Clients {
     private Date dateOfBirth;
     private String phoneNumber;
     private Date registrationDate;
+
+    private String password;
+    private String login;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

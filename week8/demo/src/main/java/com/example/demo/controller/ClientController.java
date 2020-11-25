@@ -4,10 +4,12 @@ import com.example.demo.entity.Clients;
 import com.example.demo.model.ClientModel;
 import com.example.demo.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clients")
+@PreAuthorize("hasAuthority('clientMapping')")
 public class ClientController {
 
     @Autowired

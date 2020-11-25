@@ -4,10 +4,12 @@ import com.example.demo.entity.Employees;
 import com.example.demo.model.EmployeeModel;
 import com.example.demo.service.EmployeesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employees")
+@PreAuthorize("hasAuthority('employeesMapping')")
 public class EmployeesController {
 
     @Autowired

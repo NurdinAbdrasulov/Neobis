@@ -3,18 +3,21 @@ package com.example.demo.controller;
 import com.example.demo.model.CarBrandModel;
 import com.example.demo.service.CarBrandsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/carBrand")
+@PreAuthorize("hasAuthority('carBrandMapping')")
 public class CarBrandsController {
 
     @Autowired
     private CarBrandsService carBrandsService;
 
     @GetMapping("getAll")
+
     public List getAllBrands(){
         return carBrandsService.getAllCarBrands();
     }

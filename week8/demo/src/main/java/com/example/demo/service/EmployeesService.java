@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Employees;
+import com.example.demo.enums.Role;
 import com.example.demo.model.EmployeeModel;
 import com.example.demo.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +15,9 @@ public class EmployeesService {
 
     @Autowired
     private EmployeesRepository employeesRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public Iterable<Employees> getAllEmployees(){
         return employeesRepository.findAll();
@@ -34,7 +39,8 @@ public class EmployeesService {
             employee.setAddress(employeeModel.getAddress());
             employee.setPhoneNumber(employeeModel.getPhoneNumber());
             employee.setLogin(employeeModel.getLogin());
-            employee.setPassword(employeeModel.getPassword());
+            employee.setPassword(passwordEncoder.encode(employeeModel.getPassword()));
+            employee.setRole(Role.ADMIN);//////типо по умолчанию
             employeesRepository.save(employee);
             result = "result: success";
         }
@@ -57,7 +63,7 @@ public class EmployeesService {
             employee.setPhoneNumber(model.getPhoneNumber());
             employee.setPosition(model.getPosition());
             employee.setLogin(model.getLogin());
-            employee.setPassword(model.getPassword());
+            employee.setPassword(passwordEncoder.encode(model.getPassword()));
 
             employeesRepository.save(employee);
             result = "result: success";
