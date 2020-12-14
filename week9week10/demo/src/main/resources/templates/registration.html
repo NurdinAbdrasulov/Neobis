@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
+    <title>Registration</title>
+</head>
+<body>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <header class="card-header">
+                <a  class="float-right btn btn-outline-dark mt-1">Вход</a>
+                <h4 class="card-title mt-2">Регистрация</h4>
+            </header>
+            <span th:text="${message}" id="message" style="color: red; text-align: center"></span>
+            <article class="card-body">
+                <form   method="post" th:action="@{/registration}" th:object="${employeeModel}">
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>ФИО </label>
+                            <input th:field="*{fio}" type="text" class="form-control" placeholder="">
+                        </div>
+<!--                        <div class="col form-group">-->
+<!--                            <label>Фамилия</label>-->
+<!--                            <input  type="text" class="form-control" placeholder=" ">-->
+<!--                        </div>-->
+                    </div>
+                    <div class="form-group">
+                        <label>Login</label>
+                        <input th:field="*{login}" type="text" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input  type="email" class="form-control" placeholder="в реализации" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input  th:field="*{address}" type="text" class="form-control" placeholder="" >
+                    </div>
+
+                        <div class="form-group">
+                            <label>Номер телефона</label>
+                            <input  th:field="*{phoneNumber}" type="number" class="form-control">
+                        </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Должность</label>
+                            <select  th:field="*{position}" class="form-control">
+                                <option th:each="position : ${positions}"
+                                        th:value="${position}"
+                                        th:utext="${position.toString()}">
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Пол</label>
+                            <select th:field="*{gender}"   class="form-control">
+                                <option th:each="gender: ${genders}"
+                                        th:value="${gender}"
+                                        th:utext ="${gender.toString()}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input th:field="*{password}" class="form-control" type="password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark btn-block"> Зарегистрироваться</button>
+                    </div>
+                </form>
+            </article>
+            <div class="border-top card-body text-center">Есть аккаунт? <a href="/login">Войдите в систему</a></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
